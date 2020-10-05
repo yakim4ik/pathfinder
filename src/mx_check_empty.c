@@ -3,7 +3,6 @@
 char *mx_check_empty(int fd, char *argv) {
     int temp;
     char c;
-    char *result = NULL;
 
      if ((temp = read(fd, &c, 1) == 0)) {
         mx_printerror("error: file ");
@@ -13,6 +12,5 @@ char *mx_check_empty(int fd, char *argv) {
         exit(1);
     }
     close(fd);
-    result = mx_file_to_str(argv);
-    return result;
+    return mx_file_to_str(argv); 
 }
