@@ -6,6 +6,7 @@ int main(int argc, char *argv[]) {
     path = init_pathfinder(path);
     mx_check_error(argc, argv, path);
     free_pathfinder(path);
+    mx_printstr("\nmain.c");
     system("leaks -q pathfinder");
     return 0;
 }

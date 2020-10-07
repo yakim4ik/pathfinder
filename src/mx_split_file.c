@@ -2,40 +2,36 @@
 
 bool mx_split_file (char *str, t_pfinder *path) {
     char **lines = NULL;
-    int count = 0;
-    int size = 0;
+    int j = 0;
 
-    for (int i = 0; str[i]; i++) {
-        str[i] == '\n' ? count++ : str[i];
+    if (path->line <= 2) {
+        mx_printerror("error: invalid number of islands\n");
+        return true;
+    } 
+    for (int i = 0; str[i]; i++)
         if(str[i] == '-' || str[i] == ',')
             str[i] = '\n';
-    }
     lines = mx_strsplit(str, '\n');
-    if (count < 2) {
+    path->islands = (char **)malloc(sizeof(char *) * ((path->line - 2) * 2 + 1));
+    path->islands[(path->line - 2) * 2 + 1] = NULL;
+    path->islands[0] = mx_strdup(lines[1]);
+    for (int i = 1; lines[i]; i += 3) {
+        for(j = 0; path->islands[j] && mx_strcmp(lines[i], path->islands[j]) != 0; j++);
+        if (path->islands[j] == NULL)
+            path->islands[j] = mx_strdup(lines[i]);
+        for(j = 0; path->islands[j] && mx_strcmp(lines[i+1], path->islands[j]) != 0; j++);
+        if (path->islands[j] == NULL)
+            path->islands[j] = mx_strdup(lines[i+1]);
+    }
+    for (j = 0; path->islands[j]; j++);
+
+    if (path->count != (long)j) {
         mx_printerror("error: invalid number of islands\n");
         mx_del_strarr(&lines);
+
         return true;
     }
-    path->count = count;
-    for (int i = 0; lines[i]; i++) {
-        mx_printstr(lines[i]);
-        mx_printchar('\n');
-    }
-    for (int i = 1; i < count; i += 3) {
-        size = 0;
-        while(lines[i][size] == lines[i][size])
-            size++;
-        if(lines[i - 1][size] == lines[i][size]) {
-            mx_print_error_line((i/3 + 1), path);
-            mx_del_strarr(&lines);
-            return true;
-        }
-
-    }
     mx_del_strarr(&lines);
+    system("leaks -q pathfinder");
     return false;
-    // path->islnads = (char **)malloc(sizeof(char *) * (path->count + 1));
-    // mx_printstr("\n\n");
-    // mx_printint(path->count);
-    // mx_del_strarr(&lines);
 }

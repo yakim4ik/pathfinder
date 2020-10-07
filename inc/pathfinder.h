@@ -10,7 +10,7 @@ typedef struct s_pfinder
     // char **lines;
     long count;
     int line;
-    char **islnads;
+    char **islands;
 }              t_pfinder;
 
 void mx_check_error(int argc, char *argv[], t_pfinder *path);
