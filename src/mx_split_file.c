@@ -23,12 +23,15 @@ bool mx_split_file (char *str, t_pfinder *path) {
         if (path->islands[j] == NULL)
             path->islands[j] = mx_strdup(lines[i+1]);
     }
-    for (j = 0; path->islands[j]; j++);
+    for (j = 0; path->islands[j]; j++) {
+        mx_printstr("\n");
+        mx_printstr(path->islands[j]);
+        mx_printstr("\n");
+    }
 
     if (path->count != (long)j) {
         mx_printerror("error: invalid number of islands\n");
         mx_del_strarr(&lines);
-
         return true;
     }
     mx_del_strarr(&lines);

@@ -8,9 +8,11 @@ bool mx_check_line(char *str, t_pfinder *path) {
     int count = 0;
     
     for (i = 0; mx_isdigit(str[i]); i++) {
-        path->count *= 10;
-        path->count += str[i] - 48;
+        count *= 10;
+        count += str[i] - 48;
     }
+    if ((path->count = count) == 0)
+        exit(0);
     if (str[i] != '\n' || str[i] == '\0')
         return mx_print_error_line(line, path);
     line++;
