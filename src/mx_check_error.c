@@ -9,6 +9,6 @@ void mx_check_error(int argc, char *argv[], t_pfinder *path) {
         system("leaks -q pathfinder");
         exit(1);
     }
-        mx_del_strarr(&path->islands);
+    mx_del_strarr(&path->islands);
     free(str);
 }

@@ -1,0 +1,23 @@
+
+Home
+
+BusStop
+
+Work
+
+Taxi
+
+Metro
+
+Gym
+
+Park
+leaks Report Version: 4.0
+Process 15210: 171 nodes malloced for 14 KB
+Process 15210: 0 leaks for 0 total leaked bytes.
+
+
+main.cleaks Report Version: 4.0
+Process 15210: 161 nodes malloced for 14 KB
+Process 15210: 0 leaks for 0 total leaked bytes.
+
