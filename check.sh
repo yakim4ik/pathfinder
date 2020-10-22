@@ -152,4 +152,4 @@ echo difference for \"HARDEST\" is:
 cat -e diffresult1
 echo '\n'
 
-# rm -rf test* diffresult1 invalid* easy* hard* medium empty examp*
+rm -rf test* diffresult1 invalid* easy* hard* medium empty examp*
